@@ -6,7 +6,7 @@
       <div class="profile-page tx-13">
         <Header></Header>
         <div
-          class="row profile-body d-flex flex-row justify-content-center ms-5"
+            class="row profile-body d-flex flex-row justify-content-center ms-5"
         >
           <!-- Pour mettre de publication -->
           <!-- middle wrapper start -->
@@ -24,7 +24,7 @@
                         </div>
                       </div>
                       <div
-                        class="
+                          class="
                           d-flex
                           justify-content-between
                           border-bottom
@@ -40,21 +40,21 @@
                         <div class="ml-2 d-flex">
                           <div class="col-sm-6 col-md-9 mt-2">
                             <input
-                              class="form-control mr-sm-2 bg-light"
-                              v-model="firstName"
-                              :maxlength="max"
-                              type="text"
-                              placeholder="Edit"
-                              aria-label="Edit"
+                                class="form-control mr-sm-2 bg-light"
+                                v-model="firstName"
+                                :maxlength="max"
+                                type="text"
+                                placeholder="Edit"
+                                aria-label="Edit"
                             />
                           </div>
                         </div>
                         <div class="mt-2">
                           <button
-                            class="
+                              class="
                               btn btn-primary btn-icon-text btn-edit-profile
                             "
-                            @click="_updateUser"
+                              @click="_updateUser"
                           >
                             <font-awesome-icon :icon="['fas', 'edit']" />
                             Edit
@@ -72,22 +72,22 @@
                           <div class="ml-2 d-flex">
                             <div class="col-sm-6 col-md-9 mt-2">
                               <input
-                                class="form-control mr-sm-2 bg-light"
-                                v-model="lastName"
-                                :maxlength="max"
-                                type="text"
-                                placeholder="Edit"
-                                aria-label="Edit"
+                                  class="form-control mr-sm-2 bg-light"
+                                  v-model="lastName"
+                                  :maxlength="max"
+                                  type="text"
+                                  placeholder="Edit"
+                                  aria-label="Edit"
                               />
                             </div>
                           </div>
                         </div>
                         <div class="mt-2">
                           <button
-                            class="
+                              class="
                               btn btn-primary btn-icon-text btn-edit-profile
                             "
-                            @click="_updateUser"
+                              @click="_updateUser"
                           >
                             <font-awesome-icon :icon="['fas', 'edit']" />
                             Edit
@@ -105,22 +105,22 @@
                           <div class="ml-2 d-flex">
                             <div class="col-sm-6 col-md-9 mt-2">
                               <input
-                                class="form-control mr-sm-2 bg-light"
-                                v-model="userName"
-                                :maxlength="max"
-                                type="text"
-                                placeholder="Edit"
-                                aria-label="Edit"
+                                  class="form-control mr-sm-2 bg-light"
+                                  v-model="userName"
+                                  :maxlength="max"
+                                  type="text"
+                                  placeholder="Edit"
+                                  aria-label="Edit"
                               />
                             </div>
                           </div>
                         </div>
                         <div class="mt-2">
                           <button
-                            class="
+                              class="
                               btn btn-primary btn-icon-text btn-edit-profile
                             "
-                            @click="_updateUser"
+                              @click="_updateUser"
                           >
                             <font-awesome-icon :icon="['fas', 'edit']" />
                             Edit
@@ -138,22 +138,22 @@
                           <div class="ml-2 d-flex">
                             <div class="col-sm-6 col-md-9 mt-2">
                               <input
-                                class="form-control mr-sm-2 bg-light"
-                                :maxlength="max"
-                                type="email"
-                                v-model="email"
-                                placeholder="Edit"
-                                aria-label="Edit"
+                                  class="form-control mr-sm-2 bg-light"
+                                  :maxlength="max"
+                                  type="email"
+                                  v-model="email"
+                                  placeholder="Edit"
+                                  aria-label="Edit"
                               />
                             </div>
                           </div>
                         </div>
                         <div class="mt-2">
                           <button
-                            class="
+                              class="
                               btn btn-primary btn-icon-text btn-edit-profile
                             "
-                            @click="_updateUser"
+                              @click="_updateUser"
                           >
                             <font-awesome-icon :icon="['fas', 'edit']" />
                             Edit
@@ -168,21 +168,21 @@
                           <div class="ml-2 d-flex">
                             <div class="col-sm-6 col-md-9 mt-2">
                               <input
-                                class="form-control mr-sm-2 bg-light"
-                                type="password"
-                                v-model="password"
-                                placeholder="Edit"
-                                aria-label="Edit"
+                                  class="form-control mr-sm-2 bg-light"
+                                  type="password"
+                                  v-model="password"
+                                  placeholder="Edit"
+                                  aria-label="Edit"
                               />
                             </div>
                           </div>
                         </div>
                         <div class="mt-2">
                           <button
-                            class="
+                              class="
                               btn btn-primary btn-icon-text btn-edit-profile
                             "
-                            @click="_updateUser"
+                              @click="_updateUser"
                           >
                             <font-awesome-icon :icon="['fas', 'edit']" />
                             Edit
@@ -192,12 +192,12 @@
 
                       <div class="mt-2 mb-2">
                         <button
-                          class="
+                            class="
                             btn btn-danger btn-icon-text btn-edit-profile
                             d-flex
                             justify-content-center
                           "
-                          @click="_deleteUser"
+                            @click="_deleteUser"
                         >
                           Supprimer compte
                         </button>
@@ -221,7 +221,6 @@ import { mapGetters } from "vuex";
 //  getting the current user via the state by mapGetters
 import Nav from "../components/Nav.vue";
 import Header from "../components/Header.vue";
-
 export default {
   name: "Home",
   components: {
@@ -243,46 +242,44 @@ export default {
     toUpdate() {
       this.$router.push({ name: "Update" });
     },
-
     _deleteUser: function () {
       const dynamicId = this.user.id;
       // const clearToken = localStorage.clear("userToken");
       this.$store
-        .dispatch("deleteUser", { dynamicId })
-        .then((response) => {
-          console.log(response);
-          if (response) {
-            this.$router.push({ name: "Login" });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .dispatch("deleteAccount", { dynamicId })
+          .then((response) => {
+            console.log(response);
+            if (response) {
+              this.$router.push({ name: "Login" });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
-
     // createUpdatePost
     _updateUser: function () {
-      // const updateUser = `api/account/me/${this.user.id}`;
+      //const updateUser = `api/user/account/${this.user.id}`;
       const thisFirstName = this.firstName;
       const thisLastName = this.lastName;
       const thisUserName = this.userName;
       const thisEmail = this.email;
       const thisPassword = this.password;
       this.$store
-        .dispatch("updateUser", {
-          thisFirstName,
-          thisLastName,
-          thisUserName,
-          thisEmail,
-          thisPassword,
-        })
-        .then((response) => {
-          console.log(response);
-          this.$router.push({ name: "Home" });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .dispatch("updateProfil", {
+            thisFirstName,
+            thisLastName,
+            thisUserName,
+            thisEmail,
+            thisPassword,
+          })
+          .then((response) => {
+            console.log(response);
+            this.$router.push({ name: "Home" });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
   },
   // Logique pour récuperer les datas depuis la base de données MySQL
@@ -298,7 +295,6 @@ body {
   background-color: #f9fafb;
   margin-top: 20px;
 }
-
 .profile-body {
   div {
     padding-left: 3px;
@@ -325,13 +321,11 @@ body {
   }
 }
 // card footer
-
 .card-header {
   padding: 0 0 0 0;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0);
 }
-
 .card-footer {
   background-color: white;
   border-top: 1px solid #f2f4f9;
@@ -340,7 +334,6 @@ body {
       color: #000;
       transition: all 0.2s ease;
     }
-
     &:hover,
     &.active,
     &:hover a,
@@ -355,7 +348,6 @@ body {
     margin-left: 0.15rem !important;
   }
 }
-
 .card {
   box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
 }

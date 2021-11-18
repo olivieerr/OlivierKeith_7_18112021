@@ -3,8 +3,6 @@ const usersCtrl = require("../controllers/usersController");
 const auth = require("../middleware/auth.jwt");
 const router = express.Router();
 
-//const verifyRoles = require("../middleware/isAdmin")
-
 /**
  * @description creation d'un nouveau compte
  */

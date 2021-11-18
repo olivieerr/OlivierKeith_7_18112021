@@ -44,7 +44,7 @@ export default {
 }
 
 .addImage {
-  margin: 0 5px 0 5px;
+  margin: 5px;
   color: grey;
   cursor: pointer;
   display: flex;
@@ -54,7 +54,6 @@ export default {
   padding: 5px;
     box-sizing: border-box;
     border-radius: 5px !important;
-    justify-content: space-between;
     input {
       display: inline-block;
       margin-right: 5px;

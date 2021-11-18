@@ -16,7 +16,7 @@ const Comment = model.comment;
 exports.createComment = (req, res) => {
     //Declarations des varibales pour récuperer les données du modèles
     const userId = req.params.userId; //userId du user
-    const postId = req.params.messageId; // postId de la post
+    const postId = req.params.messageId; // postId du post
     console.log(userId, postId);
     const commentPost = req.body.comment;
     const urlImage = req.file ?
@@ -90,7 +90,6 @@ exports.updateComment = (req, res) => {
     const commentId = req.params.id;
     const userId = req.params.userId;
     const comment = req.body.comment;
-    // const imageUrl = req.body.imageUrl;
     const commentObject = req.file ? {
         comment: req.body.comment,
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
@@ -180,7 +179,7 @@ exports.updateComment = (req, res) => {
                                                 if (!updatedFound) {
                                                     throw error;
                                                 } else {
-                                                    // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
+                                                    // Si il n'y a pas d'erreur alors, unlink est réussi
                                                     console.log("Modified!");
                                                     return res.status(200).json({
                                                         message: "Commentaire modifiée",
@@ -242,8 +241,6 @@ exports.deleteComment = (req, res) => {
                 .then((comment) => {
                     console.log("ici::::::::::::::", comment.imageUrl);
                     if (comment.imageUrl != null) {
-                        // Je ne comprend pas
-                        //Une fois le post qui correspond a l'id de l'user trouvé, on extrait le nom du fichier (image) à supprimer et on supprimer avec fs.unlinnk, et une fois que la suppression du fichier est fait, on fait la suppreson de l'objet de la base de données
                         const fileName = comment.imageUrl.split("/images/")[1];
                         fs.unlink(`images/${fileName}`, () => {
                             if (user && (user.isAdmin || user.id == comment.userId)) {
@@ -251,7 +248,6 @@ exports.deleteComment = (req, res) => {
                                 //Si l'id de post a été envoyé dans la requête
                                 //Il faut faire une requête postId pour vérifier s'il existe en bdd avant destroy, si non on envoie message erreur
                                 Comment.destroy({
-                                        // attributes: ['id', 'postContent', 'imageUrl'],// Mettre les attributs pour pouvoir trouver l'id du post et l'effacer par rapport à l'id de user qu'il a mis pour qu'il puisse effacer sa pubication, admin peut effacer tous le monde pub
                                         where: { id: comment.id }, // Alors, on trouve l'id du poste cet utilisateur là
                                     })
                                     .then(() => {
@@ -265,7 +261,6 @@ exports.deleteComment = (req, res) => {
                                         return res.status(500).json({ error });
                                     });
                             } else {
-                                // Si on ne trouve pas ni l'admin ni l'utilisateur qui a publier cette pubication, alors, on a pas acces pour effacer la publication
                                 return res.status(403).json({
                                     message: "Vous n'avez pas d'autorisation effacer ce post !",
                                 });
@@ -277,7 +272,6 @@ exports.deleteComment = (req, res) => {
                             //Si l'id de post a été envoyé dans la requête
                             //Il faut faire une requête postId pour vérifier s'il existe en bdd avant destroy, si non on envoie message erreur
                             Comment.destroy({
-                                    // attributes: ['id', 'postContent', 'imageUrl'],// Mettre les attributs pour pouvoir trouver l'id du post et l'effacer par rapport à l'id de user qu'il a mis pour qu'il puisse effacer sa pubication, admin peut effacer tous le monde pub
                                     where: { id: comment.id }, // Alors, on trouve l'id du poste cet utilisateur là
                                 })
                                 .then(() => {

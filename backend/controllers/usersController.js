@@ -103,10 +103,10 @@ exports.login = (req, res) => {
 
     hashedpassword = bcryptjs.hash(password, 10);
     User.findOne({
-            where: {
-                email: email,
-            },
-        })
+        where: {
+            email: email,
+        },
+    })
         .then((user) => {
             if (!user) {
                 return res
@@ -150,8 +150,8 @@ exports.login = (req, res) => {
 
 exports.getAllUsers = (req, res, next) => {
     User.findAll({
-            attributes: ["id", "firstName", "lastName", "userName", "createdAt"],
-        })
+        attributes: ["id", "firstName", "lastName", "userName", "createdAt"],
+    })
         .then((users) => {
             //console.log("user => ", users);
             if (users) {
@@ -172,18 +172,18 @@ exports.userProfil = (req, res) => {
     const userId = req.params.id;
     console.log("userId :", userId);
     User.findOne({
-            where: {
-                id: userId,
-            },
-            attributes: [
-                "firstName",
-                "lastName",
-                "userName",
-                "email",
-                "createdAt",
-                "isAdmin",
-            ],
-        }) //A veifier
+        where: {
+            id: userId,
+        },
+        attributes: [
+            "firstName",
+            "lastName",
+            "userName",
+            "email",
+            "createdAt",
+            "isAdmin",
+        ],
+    }) //A veifier
         .then((user) => {
             res.status(200).json(user); //recuperer tous le model de user
         })
@@ -232,19 +232,19 @@ exports.updateUser = (req, res) => {
         regexName.test(userName)
     ) {
         User.findOne({
-                //Un user se connecte
-                where: {
-                    id: loggedUser,
-                },
-            })
+            //Un user se connecte
+            where: {
+                id: loggedUser,
+            },
+        })
             .then((userLogged) => {
                 console.log(userLogged);
                 //Et, on met a jour le user qui a logé
                 User.findOne({
-                        where: {
-                            id: updatedUser,
-                        },
-                    })
+                    where: {
+                        id: updatedUser,
+                    },
+                })
                     .then((updatedUser) => {
                         //ici, unlink si il y a des images
                         if (userLogged && updatedUser == updatedUser) {
@@ -253,17 +253,17 @@ exports.updateUser = (req, res) => {
                                     .hash(password, 10)
                                     .then((hashedPassword) => {
                                         User.update({
-                                                firstName,
-                                                lastName,
-                                                userName,
-                                                email,
-                                                password: hashedPassword,
-                                                isAdmin
-                                            }, {
-                                                where: {
-                                                    id: updatedUser.id,
-                                                },
-                                            })
+                                            firstName,
+                                            lastName,
+                                            userName,
+                                            email,
+                                            password: hashedPassword,
+                                            isAdmin
+                                        }, {
+                                            where: {
+                                                id: updatedUser.id,
+                                            },
+                                        })
                                             .then((updated) => {
                                                 if (updated) {
                                                     return res
@@ -343,10 +343,10 @@ exports.updateProfil = (req, res) => {
         (!userName || regexName.test(userName))
     ) {
         User.findOne({
-                where: {
-                    id: loggedUserId,
-                },
-            })
+            where: {
+                id: loggedUserId,
+            },
+        })
             .then(async(loggedUser) => {
                 if (loggedUser) {
 
@@ -368,10 +368,10 @@ exports.updateProfil = (req, res) => {
                     loggedUser.isAdmin = req.body.isAdmin;
 
                     User.update(loggedUser.dataValues, {
-                            where: {
-                                id: loggedUserId,
-                            },
-                        })
+                        where: {
+                            id: loggedUserId,
+                        },
+                    })
                         .then((updated) => {
                             if (updated) {
                                 return res
@@ -408,27 +408,26 @@ exports.deleteAccount = (req, res) => {
 
     if (loggedUser != null) {
         User.findOne({
-                //On cherche une id d'utilisateur
-                attributes: ["id", "email", "userName", "isAdmin"],
-                where: { id: loggedUser }, //l'id de user est trouvé et compare avec l'id dans la base de données
-            })
+            //On cherche une id d'utilisateur
+            attributes: ["id", "email", "userName", "isAdmin"],
+            where: { id: loggedUser }, //l'id de user est trouvé et compare avec l'id dans la base de données
+        })
             .then((user) => {
                 //après avoir trouvé l'id de user on cherche tous les id associé a l'id trouvé plus haut
                 Post.findAll({
-                        where: { idUser: deletedUser },
-                    })
+                    where: { userId: deletedUser },
+                })
                     .then((post) => {
-                        console.log("poster =>", post);
                         Comment.findAll({
-                                where: { idUser: deletedUser },
-                            })
+                            where: { userId: deletedUser },
+                        })
                             .then((comment) => {
                                 if (user && (user.isAdmin || deletedUser == loggedUser)) {
                                     User.destroy({
-                                            where: {
-                                                id: deletedUser,
-                                            },
-                                        })
+                                        where: {
+                                            "id": deletedUser,
+                                        },
+                                    })
                                         .then((destroyed) => {
                                             for (const posts of post) {
                                                 if (posts.imageUrl != null) {

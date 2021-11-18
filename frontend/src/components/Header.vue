@@ -6,7 +6,7 @@
           <div class="gray-shade"></div>
           <figure>
             <img
-              src="../assets/bg1.jpg"
+              src="../assets/icon-left-font-monochrome-black.png"
               class="img-fluid"
               alt="profile cover"
             />

@@ -3,7 +3,7 @@
     <nav
       class="
         navbar navbar-dark
-        bg-primary bg-gradient
+        bg-banner bg-gradient
         d-flex
         justify-content-md-between
       "
@@ -22,21 +22,6 @@
           <h1><div class="h5">GroupomaniaNetwork</div></h1>
         </span>
       </router-link>
-      <!-- <form class="d-flex">
-        <div class="col-sm-6 col-md-12">
-          <input
-            class="form-control mr-sm-2 bg-light"
-            type="text"
-            placeholder="Search..."
-            aria-label="Search"
-            id="searchText"
-          />
-        </div>
-        <button type="button" class="btn btn-secondary">
-          <font-awesome-icon :icon="['fas', 'search']" />
-        </button>
-      </form> -->
-
       <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
           <router-link :to="{ name: 'MyProfil' }" class="a_profil navbar-brand">
@@ -108,18 +93,17 @@
               <li class="nav-item">
                 <router-link
                   :to="{ name: 'Home' }"
-                  class="nav-link link text-white"
-                  >Accueil</router-link
-                >
+                  class="nav-link link text-white">
+                  Accueil</router-link>
               </li>
               <li class="nav-item">
                 <router-link
                   :to="{ name: 'Login' }"
                   href="javascript:void(0)"
                   @click="logOutClick"
-                  class="nav-link link text-white"
-                  >Deconnexion</router-link
-                >
+                  class="nav-link link text-white">
+                  Deconnexion
+                </router-link>
               </li>
             </ul>
           </div>
@@ -153,19 +137,14 @@ export default {
 <style lang="scss" scoped>
 header {
   nav {
-    form {
-      position: relative;
-    }
-    .form-long {
-      size: 50;
-    }
     .a_logo {
       .img {
         width: 5rem;
         height: auto;
       }
       .title {
-        .bg-primary {
+        .bg-banner {
+          background-color: #878787;
           @include fontFamilly;
         }
       }

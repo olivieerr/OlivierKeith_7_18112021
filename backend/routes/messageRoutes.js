@@ -4,7 +4,6 @@ const auth = require("../middleware/auth.jwt");
 const router = express.Router();
 const multer = require("../middleware/multer-config");
 
-//const auth = require('../middleware/auth.jwt');
 
 /**
  * @description creation d'un message

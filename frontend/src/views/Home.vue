@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -45,7 +46,7 @@ import UpdatePostModal from "../components/modalUpdate.vue";
 import UpdateComment from "../components/UpdateComment.vue";
 import PostModalImage from "../components/postModalImage.vue";
 import CommentModalImage from "../components/commentModalImage.vue";
-
+import Footer from "@/components/Footer";
 export default {
   name: "Home",
   components: {
@@ -57,14 +58,11 @@ export default {
     UpdateComment,
     PostModalImage,
     CommentModalImage,
+    Footer,
   },
-
   created() {
-    console.log("getallpost");
-
     this.$store.dispatch("getAllPost");
   },
-
   // Logique pour récuperer les datas depuis la base de données MySQL
   computed: {
     //  getting the current user via the state by mapGetters
@@ -75,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 body {
-  background-color: #f9fafb;
+  //background-color: #f9fafb;
   margin-top: 20px;
 }
 </style>

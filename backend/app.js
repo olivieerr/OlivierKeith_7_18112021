@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 //Connexion
 const model = require("./models");
-const commentRoutes = require("./routes/commentRoutes"); // pour l'authorization
+const commentRoutes = require("./routes/commentRoutes");
 const messagesRoutes = require("./routes/messageRoutes");
 const usersRoutes = require("./routes/usersRoutes");
 const app = express();

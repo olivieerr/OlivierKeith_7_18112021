@@ -7,7 +7,6 @@ const Comment = model.comment;
 
 exports.createPost = (req, res, next) => {
     const userId = req.params.userId;
-    // const postId = req.params.id;
     const urlImage = req.file ?
         `${req.protocol}://${req.get("host")}/images/${req.file.filename}` :
         null;
@@ -42,10 +41,6 @@ exports.createPost = (req, res, next) => {
                         console.error(error.message);
                         return res.status(404).json({ error: "Le post est introuvable" });
                     });
-                // res.status(200).json({
-                //   message: "Objet enregistrée à la base de données",
-                //   post: created,
-                // });
             } else {
                 return res.status(403).json({
                     error: "L'enregistrement dans la base de données échouée !",
@@ -159,8 +154,6 @@ exports.updatePost = (req, res, next) => {
                             if (postFind) {
                                 Post.update(postObject, {
                                         where: { id: postId },
-                                        // returning: true,
-                                        // plain: true,
                                     })
                                     .then((updated) => {
                                         console.log("ici updateeeeeeeeee::::::::::", updated);
@@ -174,7 +167,7 @@ exports.updatePost = (req, res, next) => {
                                                 if (!updatedFound) {
                                                     throw error;
                                                 } else {
-                                                    // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
+                                                    // Si il n'y a pas d'erreur alors, unlink est réussi
                                                     console.log("Modified");
                                                     return res.status(200).json({
                                                         message: "Post modifiée",
@@ -209,8 +202,6 @@ exports.updatePost = (req, res, next) => {
                         if (postFind) {
                             Post.update(postObject, {
                                     where: { id: postId },
-                                    // returning: true, postid
-                                    // plain: true,
                                 })
                                 .then((updated) => {
                                     console.log("ici:::::::::::::::", updated);
@@ -224,7 +215,7 @@ exports.updatePost = (req, res, next) => {
                                             if (!updatedFound) {
                                                 throw error;
                                             } else {
-                                                // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
+                                                // Si il n'y a pas d'erreur alors, unlink est réussi
                                                 console.log(updatedFound, "lol");
                                                 return res.status(200).json({
                                                     message: "Post modifiée",
@@ -301,7 +292,6 @@ exports.deletePost = (req, res) => {
                                             //Si l'id de post a été envoyé dans la requête
                                             //Il faut faire une requête postId pour vérifier s'il existe en bdd avant destroy, si non on envoie message erreur
                                             Post.destroy({
-                                                    // attributes: ['id', 'postContent', 'imageUrl'],// Mettre les attributs pour pouvoir trouver l'id du post et l'effacer par rapport à l'id de user qu'il a mis pour qu'il puisse effacer sa pubication, admin peut effacer tous le monde pub
                                                     where: { id: postId }, // Alors, on trouve l'id du poste cet utilisateur là
                                                 })
                                                 .then((destroyed) => {
@@ -321,7 +311,7 @@ exports.deletePost = (req, res) => {
                                                             if (!destroyed) {
                                                                 throw error;
                                                             } else {
-                                                                // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
+                                                                // Si il n'y a pas d'erreur alors, unlink est réussi
                                                                 console.log("File deleted!");
                                                             }
                                                         }
@@ -355,14 +345,13 @@ exports.deletePost = (req, res) => {
                                         //Si l'id de post a été envoyé dans la requête
                                         //Il faut faire une requête postId pour vérifier s'il existe en bdd avant destroy, si non on envoie message erreur
                                         Post.destroy({
-                                                // attributes: ['id', 'postContent', 'imageUrl'],// Mettre les attributs pour pouvoir trouver l'id du post et l'effacer par rapport à l'id de user qu'il a mis pour qu'il puisse effacer sa pubication, admin peut effacer tous le monde pub
                                                 where: { id: postId }, // Alors, on trouve l'id du poste cet utilisateur là
                                             })
                                             .then((destroyed) => {
                                                 if (!destroyed) {
                                                     throw error;
                                                 } else {
-                                                    // Si il n'y a pas d'erreur alors, l'erreur unlink est réussi
+                                                    // Si il n'y a pas d'erreur alors, unlink est réussi
                                                     console.log("File deleted!");
                                                 }
                                                 return res.status(200).json({

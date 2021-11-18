@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <!-- Pour login et signup -->
+  <div class="row">
+    <div class="footer">
+      <small>Groupomania</small></div>
   </div>
 </template>
 
@@ -9,4 +10,11 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
 </style>
